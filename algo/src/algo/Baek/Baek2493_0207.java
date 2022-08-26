@@ -9,51 +9,51 @@ import java.util.StringTokenizer;
 
 public class Baek2493_0207 {
 
-	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
+    public static void main(String[] args) throws IOException {
+        // TODO Auto-generated method stub
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuilder sb = new StringBuilder();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
-		int T = Integer.parseInt(br.readLine());
+        int T = Integer.parseInt(br.readLine());
 
-		StringTokenizer line = new StringTokenizer(br.readLine());
-		Stack<Integer> st = new Stack<>();     // ?†’?´ë¥? ???¥
-		Stack<Integer> st_2 = new Stack<>();   // ?œ„ì¹˜ë?? ???¥
-		int a[] = new int[2]; // ?…? ¥ë°›ì? ê°’ì„ ???¥
+        StringTokenizer line = new StringTokenizer(br.readLine());
+        Stack<Integer> st = new Stack<>();     // ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ???ï¿½ï¿½
+        Stack<Integer> st_2 = new Stack<>();   // ?ï¿½ï¿½ì¹˜ï¿½?? ???ï¿½ï¿½
+        int a[] = new int[2]; // ?ï¿½ï¿½?ï¿½ï¿½ë°›ï¿½? ê°’ì„ ???ï¿½ï¿½
 
-		for (int i = 0; i < T; i++) {
-			a[0] = Integer.parseInt(line.nextToken());
-			a[1] = i + 1;
+        for (int i = 0; i < T; i++) {
+            a[0] = Integer.parseInt(line.nextToken());
+            a[1] = i + 1;
 
-			if (st.isEmpty()) {
-				sb.append(0).append(" ");
-				st.push(a[0]);
-				st_2.push(a[1]);
-			} else {
-				while (true) {
-					if (st.isEmpty()) {
-						sb.append(0).append(" ");
-						st.push(a[0]);
-						st_2.push(a[1]);
-						break;
-					} 
-					if (st.peek() > a[0]) {
-						sb.append(st_2.peek()).append(" ");
-						st.push(a[0]);
-						st_2.push(a[1]);
-						break;
-					} else {
-						st.pop();
-						st_2.pop();
-					}
+            if (st.isEmpty()) {
+                sb.append(0).append(" ");
+                st.push(a[0]);
+                st_2.push(a[1]);
+            } else {
+                while (true) {
+                    if (st.isEmpty()) {
+                        sb.append(0).append(" ");
+                        st.push(a[0]);
+                        st_2.push(a[1]);
+                        break;
+                    }
+                    if (st.peek() > a[0]) {
+                        sb.append(st_2.peek()).append(" ");
+                        st.push(a[0]);
+                        st_2.push(a[1]);
+                        break;
+                    } else {
+                        st.pop();
+                        st_2.pop();
+                    }
 
-				}
+                }
 
-			}
+            }
 
-		}
-		System.out.println(sb);
-	}
+        }
+        System.out.println(sb);
+    }
 
 }

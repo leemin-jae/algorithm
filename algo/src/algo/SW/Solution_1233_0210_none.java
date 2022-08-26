@@ -9,49 +9,47 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Solution_1233_0210_none {
-	static int node_N;
-	public static void main(String[] args) throws NumberFormatException, IOException {
-		// TODO Auto-generated method stub
+    static int node_N;
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st;
+    public static void main(String[] args) throws NumberFormatException, IOException {
+        // TODO Auto-generated method stub
 
-		List<String> list = new LinkedList<>();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-		for (int tc = 1; tc <= 10; tc++) {
+        List<String> list = new LinkedList<>();
 
-			node_N = Integer.parseInt(br.readLine());
+        for (int tc = 1; tc <= 10; tc++) {
 
-			for (int i = 1; i <= node_N; i++) {
-				st = new StringTokenizer(br.readLine());
-				st.nextToken();
-				list.add(st.nextToken());
+            node_N = Integer.parseInt(br.readLine());
 
-			}
+            for (int i = 1; i <= node_N; i++) {
+                st = new StringTokenizer(br.readLine());
+                st.nextToken();
+                list.add(st.nextToken());
 
-			
-			
-			
-			
-			for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-				String string = (String) iterator.next();
-				System.out.println(string);
+            }
 
-			}
 
-		}
+            for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+                String string = (String) iterator.next();
+                System.out.println(string);
 
-	}
-	
-	static public void dfs(int current) {
-		
-		if(current > node_N) return;
-		
-		
-		dfs(current*2);
-		dfs(current*2+1);
+            }
 
-		
-	}
+        }
+
+    }
+
+    static public void dfs(int current) {
+
+        if (current > node_N) return;
+
+
+        dfs(current * 2);
+        dfs(current * 2 + 1);
+
+
+    }
 
 }
