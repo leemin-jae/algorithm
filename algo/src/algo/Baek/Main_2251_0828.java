@@ -22,7 +22,7 @@ public class Main_2251_0828 {
 		isCheck = new boolean[A+1][B+1][C+1];
 		isC = new boolean[C+1];
 		
-		BFS(0,0,C);
+		DFS(0,0,C);
 		
 		for(int i = 0 ; i <= C ; i++) {
 			if(isC[i]) {
@@ -33,7 +33,7 @@ public class Main_2251_0828 {
 		
 	}
 	
-	static public void BFS(int a, int b, int c) {
+	static public void DFS(int a, int b, int c) {
 		if(isCheck[a][b][c]) return;
 		isCheck[a][b][c] = true;
 		if(a== 0) {
@@ -43,52 +43,46 @@ public class Main_2251_0828 {
 		// (A-a) , (B-b) , (C-c)  통 마다 들어갈수 있는 양
 		// C에서 A로 이동 -> (A-a) >= c  [a+c][b][0]  /   (A-a) < c  [A][b][c-(A-a)]
 		if(A-a >= c) {
-			BFS(a+c,b,0);
+			DFS(a+c,b,0);
 		}else {
-			BFS(A,b,c-(A-a));
+			DFS(A,b,c-(A-a));
 		}
 		
 		
 		if(B-b >= c) {
-			BFS(a,b+c,0);
+			DFS(a,b+c,0);
 		}else {
-			BFS(a,B,c-(B-b));
+			DFS(a,B,c-(B-b));
 		}
 		
 		//////
 		
 		if(A-a >= b) {
-			BFS(a+b,0,c);
+			DFS(a+b,0,c);
 		}else {
-			BFS(A,b-(A-a),c);
+			DFS(A,b-(A-a),c);
 		}
 		
 		if(C-c >= b) {
-			BFS(a,0,c+b);
+			DFS(a,0,c+b);
 		}else {
-			BFS(a,b-(C-c),C);
+			DFS(a,b-(C-c),C);
 		}
 		
 		
 		//////
 		
 		if(B-b >= a) {
-			BFS(0,b+a,c);
+			DFS(0,b+a,c);
 		}else {
-			BFS(a-(B-b),B,c);
+			DFS(a-(B-b),B,c);
 		}
 		
 		if(C-c >= a) {
-			BFS(0,b,c+a);
+			DFS(0,b,c+a);
 		}else {
-			BFS(a-(C-c),b,C);
+			DFS(a-(C-c),b,C);
 		}
-		
-		
-		
-		
-		
-		
 		
 	}
 
