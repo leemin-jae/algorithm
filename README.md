@@ -1,6 +1,29 @@
 # algorithm
 알고리즘 스터디
+####
+Collections 정렬 Comparator 사용법
 
+```
+List<int []> list = new ArrayList<>();
+list.add(new int[] {4,1});
+list.add(new int[] {3,2});
+list.add(new int[] {2,3});
+list.add(new int[] {3,6});
+list.add(new int[] {2,7});
+list.add(new int[] {1,8});
+
+list.sort(new Comparator<int []>() {
+			@Override
+			public int compare(int[] o1, int[] o2) {
+				// TODO Auto-generated method stub
+				if(o1[0] == o2[0]) {
+					return o1[1] - o2[1];
+				}else {
+					return o1[0] - o2[0];
+				}
+			}
+		});
+```
 
 #### String.split() 사용 주의
 
