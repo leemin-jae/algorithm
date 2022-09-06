@@ -3,12 +3,8 @@ package algo.Baek;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Main_12852_0906 {
-	static int N, DP[];
+	static int N;
 
 	static class Node {
 		int x;
