@@ -64,6 +64,12 @@ list.sort(new Comparator<int []>() {
 	}
 });
 ```
+* 내림차순 정렬
+```
+Integer[] arr = {1, 26, 17, 25, 99, 44, 303};
+
+Arrays.sort(arr, Collections.reverseOrder());
+```
 
 ### String.split() 사용 주의
 

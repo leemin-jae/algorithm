@@ -11,7 +11,7 @@ public class Main_1339_0906 {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		// TODO Auto-generated method stub
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	
 		
 		N = Integer.parseInt(br.readLine());
 		
