@@ -11,7 +11,8 @@ public class helloWorld {
 		System.out.println(3^8);
 		
 
-		System.out.println((int)('A'));
+		int a = 100000*10000;
+		System.out.println(a);
 	}
 
 }
