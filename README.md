@@ -7,6 +7,7 @@
 2. [다익스트라 알고리즘](#다익스트라-알고리즘)
 3. [Collections 정렬 Comparator 사용법](#Collections-정렬-Comparator-사용법)
 4. [String.split() 사용 주의](#String.split()-사용-주의)
+5. [PriorityQueue](#PriorityQueue)
 ----------
 
 ### Floyd Wrshall(플로이드 와셜) 알고리즘
@@ -197,4 +198,67 @@ String number[] = line.split("+");
 ```java
 String line = br.readLine();
 String number[] = line.split("\\+");
+```
+
+### PriorityQueue
+
+```java
+//낮은 숫자가 우선 순위인 int 형 우선순위 큐 선언
+PriorityQueue<Integer> priorityQueueLowest = new PriorityQueue<>();
+
+//높은 숫자가 우선 순위인 int 형 우선순위 큐 선언
+PriorityQueue<Integer> priorityQueueHighest = new PriorityQueue<>(Collections.reverseOrder());
+```
+
+```java
+class Gillog implements Comparable<Gillog> {
+
+    private int writeRowNumber;
+    private String content;
+
+    public Gillog(int writeRowNumber, String content) {
+        this.writeRowNumber = writeRowNumber;
+        this.content = content;
+    }
+
+    public int getWriteRowNumber() {
+        return this.writeRowNumber;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    @Override
+    public int compareTo(Gillog gillog) {
+
+        if (this.writeRowNumber > gillog.getWriteRowNumber())
+            return 1;
+        else if (this.writeRowNumber < gillog.getWriteRowNumber())
+            return -1;
+        return 0;
+    }
+}
+
+    public static void main(String[] args) {
+
+        PriorityQueue<Gillog> priorityQueue = new PriorityQueue<>();
+
+        priorityQueue.add(new Gillog(3650, "10년후 글"));
+        priorityQueue.add(new Gillog(31, "한달 후 글"));
+        priorityQueue.add(new Gillog(1, "첫번째 글"));
+        priorityQueue.add(new Gillog(365, "1년후 글"));
+
+        while (!priorityQueue.isEmpty()) {
+            Gillog gilLog = priorityQueue.poll();
+            System.out.println("글 넘버 : " + gilLog.getWriteRowNumber() + " 글 내용 : " + gilLog.getContent());
+        }
+    }
+    
+ /* 실행 결과
+글 넘버 : 1 글 내용 : 첫번째 글
+글 넘버 : 31 글 내용 : 한달 후 글
+글 넘버 : 365 글 내용 : 1년후 글
+글 넘버 : 3650 글 내용 : 10년후 글
+ */
 ```
