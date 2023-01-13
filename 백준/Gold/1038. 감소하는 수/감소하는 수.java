@@ -1,33 +1,37 @@
+import org.w3c.dom.Node;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
- 
-public class Main {    
-    
-    static ArrayList<Long> list;
-    
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        
-        int n = scan.nextInt();
-        list = new ArrayList<>();
-        
-        if(n <= 10) System.out.println(n);
-        else if(n > 1022) System.out.println("-1");
-        else {
-            for(int i = 0; i < 10; i++) {
-                bp(i, 1);
+
+public class Main {
+    static List<Long> list = new ArrayList<>();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N  = Integer.parseInt(br.readLine());
+
+        if(N <= 10){
+            System.out.println(N);
+
+        }else if(N >1022){
+            System.out.println(-1);
+        }
+        else{
+            for(int i = 0; i < 10; i++){
+                back(i, 1);
             }
             Collections.sort(list);
- 
-            System.out.println(list.get(n));
+            System.out.println(list.get(N));
         }
-    }    
-    
-    public static void bp(long num, int idx) {
-        if(idx > 10) return;
         
-        list.add(num);
-        for(int i = 0; i < num % 10; i++) {
-            bp((num * 10) + i, idx + 1);
+    }
+    static public void back(long cnt , int k){
+        if(k > 10) return;
+        list.add(cnt);
+        for(int i = 0 ; i < cnt % 10 ; i++){
+            back((cnt*10) + i , k + 1);
         }
     }
+
 }
