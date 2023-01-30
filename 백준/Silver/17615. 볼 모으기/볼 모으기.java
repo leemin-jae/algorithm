@@ -19,18 +19,24 @@ public class Main {
 
         boolean check = false;
         int cnt = 0;
+        int num = 0;
         while(!stack.isEmpty()){
             if(stack.peek() == 'R'){
                 if(check){
                     cnt++;
                     check = false;
                     stack.pop();
-                    stack.push('B');
+                    for(int i = 0 ; i < num ; i++){
+                        stack.push('B');
+                    }
+                    num = 0;
+
                 }else{
                     stack.pop();
                 }
             }else{
                 check = true;
+                num++;
                 stack.pop();
             }
         }
@@ -42,18 +48,23 @@ public class Main {
 
         boolean B_check = false;
         int B_cnt = 0;
+        num = 0;
         while(!stack.isEmpty()){
             if(stack.peek() == 'B'){
                 if(B_check){
                     B_cnt++;
                     B_check = false;
                     stack.pop();
-                    stack.push('R');
+                    for(int i = 0 ; i < num ; i++){
+                        stack.push('R');
+                    }
+                    num = 0;
                 }else{
                     stack.pop();
                 }
             }else{
                 B_check = true;
+                num++;
                 stack.pop();
             }
         }
