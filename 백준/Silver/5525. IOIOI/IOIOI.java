@@ -33,6 +33,7 @@ public class Main {
             if(s.charAt(i) == 'I'){
                 if(s.substring(i,i+2*N+1).equals(std)){
                     sum++;
+                    i++;
                 }
             }
         }
