@@ -26,7 +26,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
 
 
@@ -39,10 +39,11 @@ public class Main {
             int now = Integer.parseInt(br.readLine());
             if(now == 0){
                 if(queue.isEmpty()){
-                    System.out.println(0);
+                    bw.write(Integer.toString(0));
                 }else{
-                    System.out.println(queue.poll().num);
+                    bw.write(Integer.toString(queue.poll().num));
                 }
+                bw.write("\n");
 
             }else{
                 queue.add(new Node(now));
@@ -50,7 +51,8 @@ public class Main {
 
         }
 
-
+        bw.flush();
+        bw.close();
 
     }
 
