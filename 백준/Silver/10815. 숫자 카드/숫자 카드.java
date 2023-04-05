@@ -16,6 +16,7 @@ public class Main {
         for(int i = 0 ; i < N ; i ++){
             line[i] = Integer.parseInt(st.nextToken());
         }
+
         int M = Integer.parseInt(br.readLine());
         int money[] = new int[M];
 
@@ -24,25 +25,24 @@ public class Main {
             money[i] = Integer.parseInt(st.nextToken());
         }
 
-        solution(N, line, money);
+        solution(N, line, M, money);
     }
 
-    public static void solution(int n, int line[], int money[]) {
+    public static void solution(int n, int line[], int m, int money[]) {
 
         Set<Integer> set = new HashSet<>();
-
-        for(int i= 0 ; i < line.length ;i++){
+        for(int i= 0 ; i < n ;i++){
             set.add(line[i]);
         }
-        for(int i= 0 ; i < money.length ;i++){
+
+        StringBuilder sb = new StringBuilder();
+        for(int i= 0 ; i < m ;i++){
             if(set.contains(money[i])){
-                System.out.print("1 ");
+                sb.append("1 ");
             }else{
-                System.out.print("0 ");
+                sb.append("0 ");
             }
         }
-
+        System.out.println(sb);
     }
-
-
 }
