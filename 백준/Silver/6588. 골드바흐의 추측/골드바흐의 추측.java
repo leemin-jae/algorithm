@@ -27,15 +27,10 @@ import java.io.BufferedReader;
                 if(x == 0) break;
                 boolean flag = false;
 
-                for(int i = 2 ; i <= x ; i++){
+                for(int i = 2 ; i <= x/2 ; i++){
                     if(checked[i] || checked[x-i]) continue;
                     System.out.println(x + " = " + i + " + " + (x-i));
-                    flag = true;
                     break;
-                }
-
-                if(!flag){
-                    System.out.println("Goldbach's conjecture is wrong.");
                 }
 
             }
