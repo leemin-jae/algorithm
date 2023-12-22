@@ -2,67 +2,59 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static StringTokenizer st;
 
-    static class Node implements Comparable<Node>{
-        int deadLine;
+    static class Node implements Comparable<Node> {
+        int dead;
         int cup;
-        Node(int deadLine , int cup){
-            this.deadLine = deadLine;
+        Node(int dead, int cup){
+            this.dead = dead;
             this.cup = cup;
         }
 
+
         @Override
         public int compareTo(Node o) {
-            if(o.deadLine == this.deadLine){
-                return o.cup - this.cup;
-            }
-            return this.deadLine - o.deadLine;
+            return this.dead == o.dead ? o.cup - this.cup : this.dead - o.dead;
         }
     }
     public static void main(String[] args) throws IOException {
 
         int N = Integer.parseInt(br.readLine());
-        PriorityQueue<Integer> queue = new PriorityQueue<>();
-        ArrayList<Node> arr = new ArrayList<>();
-
-        for(int i = 0 ; i < N ;i++){
+        PriorityQueue<Node> queue = new PriorityQueue<>();
+        PriorityQueue<Integer> cupInt = new PriorityQueue<>();
+        for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            arr.add(new Node(Integer.parseInt(st.nextToken()) , Integer.parseInt(st.nextToken())));
+            queue.add(new Node(Integer.parseInt(st.nextToken()) , Integer.parseInt(st.nextToken())));
         }
-        
-        Collections.sort(arr);
-        
-        
-        for(Node node : arr ){
-            int size = queue.size();
-            
-            if(size < node.deadLine){
-                queue.add(node.cup);
-            }
-            else if(size == node.deadLine){
-                int peek = queue.peek();
-                
-                if(node.cup > peek){
-                    queue.poll();
-                    queue.add(node.cup);
+
+//        for (Node now : queue){
+//            System.out.println(now.dead + " " + now.cup);
+//        }
+
+        while (!queue.isEmpty()){
+            Node now = queue.poll();
+            int size = cupInt.size();
+            if(now.dead > size){
+                cupInt.add(now.cup);
+            }else{
+                if(cupInt.peek() < now.cup){
+                    cupInt.poll();
+                    cupInt.add(now.cup);
                 }
             }
-            
-            
-        }
-        int sum = 0;
-        while (!queue.isEmpty()){
-            sum += queue.poll();
         }
 
-        System.out.println(sum);
+        int result = 0;
+        while (!cupInt.isEmpty()){
+            result += cupInt.poll();
+        }
+
+        System.out.println(result);
 
     }
-
-
-
 }
