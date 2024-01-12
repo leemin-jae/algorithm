@@ -1,39 +1,41 @@
 import java.util.*;
 class Solution {
-    static String people = "ACFJMNRT";
-    static int num;
+    static String[] arr = {"A","C","F","J","M","N","R","T"};
+    static String[] result = new String[8];
+    static boolean[] used = new boolean[8];
+    static int answer;
     public int solution(int n, String[] data) {
-                num = 0;
-        dfs(0, new boolean[people.length()] , "" , data);
-        return num;
+        answer = 0;
+        perm(0,data);
+        return answer;
     }
-     static public void dfs(int cnt , boolean visited[] ,String line , String[] data){
-       if(cnt == people.length()){
-                for (String now :  data) {
-                    int from = people.indexOf(now.substring(0, 1));
-                    int to = people.indexOf(now.substring(2, 3));
+    static void perm(int cnt, String[] data){
+        if(cnt==8){
+            String s = "";
+            for(int i=0; i<arr.length; i++){
+                s+=result[i];
+            }
+            for(int i=0; i<data.length; i++){
+                int start = s.indexOf(data[i].charAt(0));
+                int end = s.indexOf(data[i].charAt(2));
 
-                    String op = now.substring(3, 4);
-                    int dis = Integer.parseInt(now.substring(4)) + 1;
-                    int check = Math.abs(line.indexOf(Integer.toString(from)) - line.indexOf(Integer.toString(to)));
-
-                    if ("=".equals(op)) {
-                        if(check != dis) return;
-                    }else if (">".equals(op)){
-                        if(check <= dis) return;
-                    }else
-                        if(check >= dis) return;
+                if(data[i].charAt(3)=='=' && Math.abs(start-end)-1!=data[i].charAt(4)-'0'){
+                    return;
+                }else if(data[i].charAt(3)=='<' && Math.abs(start-end)-1>=data[i].charAt(4)-'0'){
+                    return;
+                }else if(data[i].charAt(3)=='>' && Math.abs(start-end)-1<=data[i].charAt(4)-'0'){
+                    return;
                 }
-            num++;
+            }
+            answer++;
             return;
-
         }
-
-        for (int i = 0; i < people.length(); i++) {
-            if(!visited[i]){
-                visited[i] = true;
-                dfs(cnt+1 , visited , line + i,data);
-                visited[i] = false;
+        for(int i=0; i<arr.length; i++){
+            if(!used[i]){
+                used[i] = true;
+                result[cnt] = arr[i];
+                perm(cnt+1, data);
+                used[i] = false;
             }
         }
     }
