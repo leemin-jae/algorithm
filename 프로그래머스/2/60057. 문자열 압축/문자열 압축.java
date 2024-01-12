@@ -1,33 +1,42 @@
 class Solution {
     public int solution(String s) {
-        int min = s.length();
-        int len = s.length()/2+1;
-        for(int i = 1; i < len; i++) {
-            String before = "";
-            int sum = 0;
-            int cnt = 1;
-            for(int j = 0; j < s.length();) {               
-                int start = j;
-                j = (j+i > s.length()) ? s.length():j+i;
-                String temp = s.substring(start, j);
-                if(temp.equals(before)) {
-                    cnt++;
-                } else {
-                    if(cnt != 1) {
-                        sum += (int)Math.log10(cnt)+1;
+        int answer = 10000;
+        for(int i = 1 ; i <= s.length()/2+1 ;i++){
+
+
+            StringBuilder sb = new StringBuilder();
+            String check = s.substring(0 , i);
+            int num = 1;
+            int j = i;
+            for(; j <= s.length() - i ; j+=i){
+                String next = s.substring(j , j+i);
+                if(check.equals(next)){
+                    num++;
+                }else{
+                    if(num == 1){
+                        sb.append(check);
+                    }else{
+                        sb.append(num).append(check);
                     }
-                    cnt = 1;
-                    sum+=before.length();
-                    before = temp;
+                    check = next;
+                    num = 1;
                 }
+
             }
-            sum+=before.length();
-            if(cnt != 1) {
-                sum += (int)Math.log10(cnt)+1;
+            if(num == 1){
+                sb.append(check);
+            }else{
+                sb.append(num).append(check);
             }
-            min = (min > sum) ? sum : min;
+
+
+            sb.append(s.substring(j));
+
+            answer = Math.min(answer , sb.toString().length());
+
+
         }
 
-        return min;
+        return answer;
     }
 }
