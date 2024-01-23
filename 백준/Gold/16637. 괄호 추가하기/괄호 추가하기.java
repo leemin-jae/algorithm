@@ -16,14 +16,14 @@ public class Main {
         if(s.length() == 1){
             System.out.println(s.charAt(0) -'0');
         }else{
-            dfs(1 , s.charAt(0) -'0' ,"1");
-            dfs(3 , calculate(s.charAt(0) - '0' , s.charAt(1) , s.charAt(2) -'0') , "2");
+            dfs(1 , s.charAt(0) -'0' );
+            dfs(3 , calculate(s.charAt(0) - '0' , s.charAt(1) , s.charAt(2) -'0') );
             System.out.println(Max);
         }
 
     }
 
-    static public void dfs(int cnt , int sum , String sk){
+    static public void dfs(int cnt , int sum){
         if(cnt >= s.length()){
             Max = Math.max(Max , sum);
             return;
@@ -32,14 +32,14 @@ public class Main {
         char cal = s.charAt(cnt);
         int first = s.charAt(cnt+1) - '0';
 
-        dfs(cnt+2 , calculate(sum , cal , first) ,sk +"1");
+        dfs(cnt+2 , calculate(sum , cal , first) );
 
 
         if(cnt + 3 < s.length()){
             char secondCal = s.charAt(cnt+2);
             int second = s.charAt(cnt+3) - '0';
 
-            dfs(cnt+4 , calculate(sum , cal , calculate(first , secondCal , second)),sk +"2");
+            dfs(cnt+4 , calculate(sum , cal , calculate(first , secondCal , second)));
         }
 
     }
